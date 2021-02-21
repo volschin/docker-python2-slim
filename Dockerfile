@@ -16,7 +16,7 @@ ENV LANG C.UTF-8
 ENV PYTHONIOENCODING UTF-8
 
 # runtime dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -qqy --no-install-recommends \
 		ca-certificates \
 		netbase \
 	&& rm -rf /var/lib/apt/lists/*
@@ -27,7 +27,7 @@ ENV PYTHON_VERSION 2.7.18
 RUN set -ex \
 	\
 	&& savedAptMark="$(apt-mark showmanual)" \
-	&& apt-get update && apt-get install -y --no-install-recommends \
+	&& apt-get update && apt-get install -qqy --no-install-recommends \
 		dpkg-dev \
 		gcc \
 		libbz2-dev \
@@ -137,7 +137,7 @@ RUN set -ex; \
 	\
 	savedAptMark="$(apt-mark showmanual)"; \
 	apt-get update; \
-	apt-get install -y --no-install-recommends wget; \
+	apt-get install -qqy --no-install-recommends wget; \
 	\
 	wget -O get-pip.py "$PYTHON_GET_PIP_URL"; \
 	echo "$PYTHON_GET_PIP_SHA256 *get-pip.py" | sha256sum --check --strict -; \
